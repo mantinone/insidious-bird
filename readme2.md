@@ -15,13 +15,15 @@ Learn the ins and outs of Phaser by making a fun, interactive game.
 - [ ] Player can reset/restart game at any time
 - [ ] Map is generated randomly, with various obstacles along the way
 - [ ] Player can pause game and save game
-- [ ] User log in and database to save high scores
+- [ ] User log in and database to save high scores, achievements, flap count
 - [ ] Network for multiplayer functionality in a vs mode
-
-## Stretch Goals
-- [ ] Add exploration mode which includes gathering treasure and procedurally generated maps
+- [ ] Game saves win loss record after versus games
+- [ ] Add exploration mode where players can choose different paths by going up or down
+- [ ] Database saves a record of path so future players can try to find paths other players have taken for a bonus.
+- [ ] "Chimera mode" where various power ups change both your bird's appearance and how it interacts with obstacles
+- [ ] At end of "Chimera Mode" the game gives the option to save an image of your final bird with all powerups
 - [ ] Add shooter mode with enemy birds, weapons, and powerups to enhance your bird
-- [ ] Chimera mode where various power ups change both your bird's appearance and how it interacts with obstacles
+
 
 ### Required
 
@@ -47,6 +49,7 @@ _Do not remove these specs - they are required for all goals_.
 - All features are added via pull requests. [25 points]
 - Every pull request has a description summarizing the changes made. [25 points]
 - Every pull request has been reviewed by at least one other person. [25 points]
+
 ---
 
 <!-- LICENSE -->
