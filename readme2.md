@@ -2,31 +2,26 @@
 
 ## Description
 
-Make a flappy-bird clone in phaser io
+Use a Flappy Bird Clone to make a networked game that includes simultaneous multiplayer and saving a user's game data to a postresql database.
 
 ## Context
 
-Learn the ins and outs of Phaser by making a fun, interactive game.
+Learn the ins and outs of Networking and sharing simultaneous data between multiple users.
 
 ## Specifications
 
-- [ ] User can start game after front page loads
-- [ ] Player can control bird's movement to avoid obstacles
-- [ ] Player can reset/restart game at any time
-- [ ] Map is generated randomly, with various obstacles along the way
-- [ ] Player can pause game and save game
-- [ ] User log in and database to save high scores, achievements, flap count
-- [ ] Network for multiplayer functionality in a vs mode
+- [ ] User can play a basic Flappy Bird clone using the Spacebar
+- [ ] Map is generated randomly with a reusable seed, allowing multiple players to see the same random map.
+- [ ] User can log in, and we will use a postresql database to save high scores, achievements, flap count
+- [ ] Users will be able to connect to each other from different computers to play a head-to-head game.
 - [ ] Game saves win loss record after versus games
-- [ ] Add exploration mode where players can choose different paths by going up or down
-- [ ] Database saves a record of path so future players can try to find paths other players have taken for a bonus.
-- [ ] "Chimera mode" where various power ups change both your bird's appearance and how it interacts with obstacles
-- [ ] At end of "Chimera Mode" the game gives the option to save an image of your final bird with all powerups
-- [ ] Add shooter mode with enemy birds, weapons, and powerups to enhance your bird
+- [ ] Database saves locations where players have died, and you can see the deaths of people you played a vs. match against.
 - [ ] Test backend and testable front end functions with chai
 
 ## Stretch Goals
-- [ ] Test front end with selenium
+- [ ] Implement character movement without Phaser
+- [ ] Implement random obstacle generation without Phaser
+- [ ] Implement collision detection without Phaser
 
 ### Required
 
