@@ -7,6 +7,9 @@ var mainState = {
 
     // Load the bird sprite
     game.load.image('bird', 'assets/bird.png')
+
+    //load pipes sprite
+    game.load.image('pipe', 'assets/pipe.png')
   },
 
   create: function() {
@@ -33,6 +36,15 @@ var mainState = {
     var spaceKey = game.input.keyboard.addKey(
                    Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this);
+
+    //create an empty group
+    this.pipes = game.add.group()
+
+    // add row of pipes every 1.5 seconds
+    this.timer = game.time.events.loop(1500, this.addRowOfPipes, this)
+
+    this.score = 0
+    this.labelScore = game.add.text(20, 20, '0', { font: '30px Arial', fill: '#ffffff' })
   },
 
   update: function() {
@@ -43,6 +55,9 @@ var mainState = {
     // Call the 'restartGame' function
     if (this.bird.y < 0 || this.bird.y > 490)
       this.restartGame()
+
+    game.physics.arcade.overlap(
+      this.bird, this.pipes, this.restartGame, null, this)
   },
 
   //make bird jump
@@ -50,6 +65,39 @@ var mainState = {
     //add a vertical velocity to the bird
     this.bird.body.velocity.y = -350
   },
+
+  addOnePipe: function(x, y) {
+      // Create a pipe at the position x and y
+      var pipe = game.add.sprite(x, y, 'pipe');
+
+      // Add the pipe to our previously created group
+      this.pipes.add(pipe);
+
+      // Enable physics on the pipe
+      game.physics.arcade.enable(pipe);
+
+      // Add velocity to the pipe to make it move left
+      pipe.body.velocity.x = -200;
+
+      // Automatically kill the pipe when it's no longer visible
+      pipe.checkWorldBounds = true;
+      pipe.outOfBoundsKill = true;
+  },
+
+  addRowOfPipes: function() {
+    // Randomly pick a number between 1 and 5
+    // This will be the hole position
+    var hole = Math.floor(Math.random() * 5) + 1;
+
+    // Add the 6 pipes
+    // With one big hole at position 'hole' and 'hole + 1'
+    for (var i = 0; i < 8; i++)
+        if (i != hole && i != hole + 1 && i != hole + 2)
+            this.addOnePipe(400, i * 60 + 10);
+
+  this.score += 1
+  this.labelScore.text = this.score
+},
 
   //restart the game
   restartGame: function() {
