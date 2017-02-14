@@ -10,6 +10,9 @@ var mainState = {
 
     //load pipes sprite
     game.load.image('pipe', 'assets/pipe.png')
+
+    //load jump sound
+    game.load.audio('jump', 'assets/jump.wav')
   },
 
   create: function() {
@@ -45,6 +48,10 @@ var mainState = {
 
     this.score = 0
     this.labelScore = game.add.text(20, 20, '0', { font: '30px Arial', fill: '#ffffff' })
+
+    this.bird.anchor.setTo(-.2, .5)
+
+    this.jumpSound = game.add.audio('jump')
   },
 
   update: function() {
@@ -57,13 +64,51 @@ var mainState = {
       this.restartGame()
 
     game.physics.arcade.overlap(
-      this.bird, this.pipes, this.restartGame, null, this)
+      this.bird, this.pipes, this.hitPipe, null, this)
+
+    if (this.bird.angle < 20)
+      this.bird.angle += 1
+  },
+
+  hitPipe: function() {
+    // If the bird has already hit a pipe, do nothing
+    // It means the bird is already falling off the screen
+    if (this.bird.alive == false)
+      return
+
+    //set the alive property of the bird to false
+    this.bird.alive = false
+
+    //prevent new pipes from appearing
+    game.time.events.remove(this.timer)
+
+    //go through all the pupes and stop their movements
+    this.pipes.forEach(function(p){
+      p.body.velocity.x = 0
+    }, this)
   },
 
   //make bird jump
   jump: function() {
+
+    if (this.bird.alive == false)
+      return
+
     //add a vertical velocity to the bird
     this.bird.body.velocity.y = -350
+
+    // Create an animation on the bird
+    //var animation = game.add.tween(this.bird)
+
+    // Change the angle of the bird to -20° in 100 milliseconds
+    //animation.to( { angle: -20}, 100 )
+
+    //and start the animation
+    //animation.start()
+
+    game.add.tween(this.bird).to({angle: -20}, 100).start()
+
+    this.jumpSound.play()
   },
 
   addOnePipe: function(x, y) {
