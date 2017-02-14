@@ -23,7 +23,10 @@ Learn the ins and outs of Phaser by making a fun, interactive game.
 - [ ] "Chimera mode" where various power ups change both your bird's appearance and how it interacts with obstacles
 - [ ] At end of "Chimera Mode" the game gives the option to save an image of your final bird with all powerups
 - [ ] Add shooter mode with enemy birds, weapons, and powerups to enhance your bird
+- [ ] Test backend and testable front end functions with chai
 
+## Stretch Goals
+- [ ] Test front end with selenium
 
 ### Required
 
